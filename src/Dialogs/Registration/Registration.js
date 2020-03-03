@@ -8,6 +8,10 @@ import {
   TextField
 } from "@material-ui/core";
 
+const textField = {
+  margin: "2% auto"
+};
+
 export default class Registration extends Component {
   constructor(props) {
     super(props);
@@ -27,18 +31,22 @@ export default class Registration extends Component {
   render() {
     return (
       <div>
-        <Button fullWidth onClick={this.openForm}>
+        <Button
+          color="primary"
+          variant="contained"
+          fullWidth
+          onClick={this.openForm}
+        >
           <h1>Registration</h1>
         </Button>
 
-        <Dialog open={this.state.open}>
-          <DialogTitle>
-            <h1>Register here:</h1>
-          </DialogTitle>
+        <Dialog fullScreen open={this.state.open}>
+          <DialogTitle>Register here:</DialogTitle>
 
           <DialogContent>
             <form>
               <TextField
+                style={textField}
                 type="text"
                 label="Username"
                 variant="outlined"
@@ -46,6 +54,7 @@ export default class Registration extends Component {
               ></TextField>
 
               <TextField
+                style={textField}
                 type="text"
                 label="Email"
                 variant="outlined"
@@ -53,6 +62,7 @@ export default class Registration extends Component {
               ></TextField>
 
               <TextField
+                style={textField}
                 type="text"
                 label="Password"
                 variant="outlined"
@@ -60,6 +70,7 @@ export default class Registration extends Component {
               ></TextField>
 
               <TextField
+                style={textField}
                 type="text"
                 label="Confirm Password"
                 variant="outlined"
@@ -69,8 +80,18 @@ export default class Registration extends Component {
           </DialogContent>
 
           <DialogActions>
-            <Button onClick={this.closeForm}>Cancel</Button>
-            <Button>Submit</Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              size="large"
+              onClick={this.closeForm}
+            >
+              Cancel
+            </Button>
+
+            <Button variant="outlined" color="primary" size="large">
+              Submit
+            </Button>
           </DialogActions>
         </Dialog>
       </div>

@@ -8,6 +8,14 @@ import {
   TextField
 } from "@material-ui/core";
 
+const loginButton = {
+  marginBottom: "5%"
+};
+
+const textField = {
+  margin: "2% auto"
+};
+
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -27,18 +35,23 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <Button fullWidth onClick={this.openForm}>
+        <Button
+          style={loginButton}
+          color="primary"
+          variant="contained"
+          fullWidth
+          onClick={this.openForm}
+        >
           <h1>Login</h1>
         </Button>
 
         <Dialog open={this.state.open}>
-          <DialogTitle>
-            <h1>Log in here:</h1>
-          </DialogTitle>
+          <DialogTitle>Log in here:</DialogTitle>
 
           <DialogContent>
             <form>
               <TextField
+                style={textField}
                 type="text"
                 label="Email"
                 variant="outlined"
@@ -46,6 +59,7 @@ export default class Login extends Component {
               ></TextField>
 
               <TextField
+                style={textField}
                 type="text"
                 label="Password"
                 variant="outlined"
@@ -55,8 +69,17 @@ export default class Login extends Component {
           </DialogContent>
 
           <DialogActions>
-            <Button onClick={this.closeForm}>Cancel</Button>
-            <Button>Submit</Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              size="large"
+              onClick={this.closeForm}
+            >
+              Cancel
+            </Button>
+            <Button variant="outlined" color="primary" size="large">
+              Submit
+            </Button>
           </DialogActions>
         </Dialog>
       </div>
