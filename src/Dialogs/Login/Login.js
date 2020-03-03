@@ -20,8 +20,14 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      email: "",
+      password: "",
+      error: ""
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   openForm = () => {
@@ -30,6 +36,28 @@ export default class Login extends Component {
 
   closeForm = () => {
     this.setState({ open: false });
+    this.clearForm();
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    console.log(this.state);
+
+    this.closeForm();
+  };
+
+  clearForm = () => {
+    this.setState({
+      email: "",
+      password: ""
+    });
   };
 
   render() {
@@ -53,6 +81,9 @@ export default class Login extends Component {
               <TextField
                 style={textField}
                 type="text"
+                id="email"
+                value={this.state.email}
+                onChange={this.handleChange}
                 label="Email"
                 variant="outlined"
                 fullWidth
@@ -61,6 +92,9 @@ export default class Login extends Component {
               <TextField
                 style={textField}
                 type="text"
+                id="password"
+                value={this.state.password}
+                onChange={this.handleChange}
                 label="Password"
                 variant="outlined"
                 fullWidth
@@ -77,7 +111,15 @@ export default class Login extends Component {
             >
               Cancel
             </Button>
-            <Button variant="outlined" color="primary" size="large">
+            <Button
+              type="submit"
+              value="submit"
+              variant="outlined"
+              color="primary"
+              size="large"
+              onClick={this.handleSubmit}
+              disabled={!this.state.email || !this.state.password}
+            >
               Submit
             </Button>
           </DialogActions>
